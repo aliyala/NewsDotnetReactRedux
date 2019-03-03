@@ -1,7 +1,7 @@
 const initialState = { news: [] };
 const getNewsType = 'GET_NEWS'
 const receiveNewsType = 'RECEIVE_NEWS'
-const url = 'api/News/Get'
+const url = 'api/news/get'
 
 export const actionCreators = {
     getNews: () => async (dispatch) => {

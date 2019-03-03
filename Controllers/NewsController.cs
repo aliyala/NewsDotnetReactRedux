@@ -10,7 +10,7 @@ namespace ReactApp.Controllers
     {
 
         [HttpGet]
-        public IEnumerable<NewsDto> GetNews()
+        public IEnumerable<NewsDto> Get()
         {
             var news = new List<NewsDto>();
             news.Add(new NewsDto { Title = "Заголовок очень интересной новости", Content = "Сенсация! Произошло такое!!!" });
