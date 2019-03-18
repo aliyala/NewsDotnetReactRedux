@@ -6,9 +6,17 @@ import {actionCreators} from "../store/News";
 import NewsModalDialog from "./NewsModalDialog";
 
 class News extends Component {
+    constructor(props)
+    {
+        super(props)
+        this.state = {
+            selectedNews: null
+        }
+    }
+
     getNewsItems(news) {
         return news.map(n => {
-            return <NewsItem title={n.title} onSelect={() => {alert('yyy')}}/>
+            return <NewsItem title={n.title} onSelect={() => {this.setState({selectedNews: n})}}/>
         })
     }
 
@@ -21,9 +29,14 @@ class News extends Component {
             <div>
                 <h1>Новости</h1>
                 {this.getNewsItems(this.props.news)}
-                <NewsModalDialog show={true} body={'fjfjfj'} />
+                <NewsModalDialog
+                    show={this.state.selectedNews}
+                    body={this.state.selectedNews ? this.state.selectedNews.content : ''}
+                    title={this.state.selectedNews ? this.state.selectedNews.title : ''}
+                    handleClose={() => {this.setState({selectedNews: null})}}
+                />
             </div>
-        );
+        )
     }
 }
 
