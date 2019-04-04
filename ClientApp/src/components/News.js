@@ -31,6 +31,8 @@ class News extends Component {
                 {this.getNewsItems(this.props.news)}
                 <NewsModalDialog
                     show={this.state.selectedNews}
+                    items={this.props.news}
+                    selectedItem={this.state.selectedNews}
                     body={this.state.selectedNews ? this.state.selectedNews.content : ''}
                     title={this.state.selectedNews ? this.state.selectedNews.title : ''}
                     handleClose={() => {this.setState({selectedNews: null})}}
