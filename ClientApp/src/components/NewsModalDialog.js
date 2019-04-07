@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {Modal} from "react-bootstrap";
 import Carousel from "react-bootstrap/es/Carousel";
+import './NewsModalDialog.css'
 
 export default class NewsModalDialog extends Component {
     constructor(props, context) {
