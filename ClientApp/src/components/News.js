@@ -4,6 +4,7 @@ import NewsItem from "./NewsItem";
 import {bindActionCreators} from "redux";
 import {actionCreators} from "../store/News";
 import NewsModalDialog from "./NewsModalDialog";
+import Button from "react-bootstrap/es/Button";
 
 class News extends Component {
     constructor(props)
@@ -12,12 +13,22 @@ class News extends Component {
         this.state = {
             selectedNews: null
         }
+
+        this.addNews = this.addNews.bind(this)
     }
 
     getNewsItems(news) {
         return news.map(n => {
             return <NewsItem title={n.title} onSelect={() => {this.setState({selectedNews: n})}}/>
         })
+    }
+
+    addNews() {
+        const news = {
+            title: `Новая новость ${new Date()}`,
+            content: 'контент'
+        }
+        this.props.addNews(news)
     }
 
     async componentDidMount() {
@@ -28,6 +39,7 @@ class News extends Component {
         return (
             <div>
                 <h1>Новости</h1>
+                <Button onClick={this.addNews}>Добавить новость</Button>
                 {this.getNewsItems(this.props.news)}
                 <NewsModalDialog
                     show={this.state.selectedNews}
