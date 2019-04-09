@@ -5,13 +5,15 @@ import {bindActionCreators} from "redux";
 import {actionCreators} from "../store/News";
 import NewsModalDialog from "./NewsModalDialog";
 import Button from "react-bootstrap/es/Button";
+import AddNewsModalDialog from './AddNewsModalDialog';
 
 class News extends Component {
     constructor(props)
     {
         super(props)
         this.state = {
-            selectedNews: null
+            selectedNews: null,
+            addingNews: true
         }
 
         this.addNews = this.addNews.bind(this)
@@ -48,6 +50,10 @@ class News extends Component {
                     body={this.state.selectedNews ? this.state.selectedNews.content : ''}
                     title={this.state.selectedNews ? this.state.selectedNews.title : ''}
                     handleClose={() => {this.setState({selectedNews: null})}}
+                />
+                <AddNewsModalDialog
+                    show={this.state.addingNews}
+                    handleClose={() => {this.setState({addingNews: false})}}
                 />
             </div>
         )
