@@ -27,7 +27,7 @@ export default class NewsModalDialog extends Component {
     getItems(items) {
         return items.map(i => {
             return <Carousel.Item>
-                {i.content}
+                <div dangerouslySetInnerHTML={{__html: i.content}} />
             </Carousel.Item>
         })
     }

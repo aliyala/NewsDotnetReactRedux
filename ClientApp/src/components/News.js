@@ -54,6 +54,7 @@ class News extends Component {
                 <AddNewsModalDialog
                     show={this.state.addingNews}
                     handleClose={() => {this.setState({addingNews: false})}}
+                    save={this.props.addNews}
                 />
             </div>
         )
