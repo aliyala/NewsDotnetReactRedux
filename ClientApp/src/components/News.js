@@ -4,8 +4,9 @@ import NewsItem from "./NewsItem";
 import {bindActionCreators} from "redux";
 import {actionCreators} from "../store/News";
 import NewsModalDialog from "./NewsModalDialog";
-import Button from "react-bootstrap/es/Button";
+import { Button, ButtonToolbar } from "react-bootstrap";
 import AddNewsModalDialog from './AddNewsModalDialog';
+import './News.css'
 
 class News extends Component {
     constructor(props)
@@ -13,10 +14,10 @@ class News extends Component {
         super(props)
         this.state = {
             selectedNews: null,
-            addingNews: true
+            addingNews: false
         }
 
-        this.addNews = this.addNews.bind(this)
+        this.saveNews = this.saveNews.bind(this)
     }
 
     getNewsItems(news) {
@@ -25,12 +26,9 @@ class News extends Component {
         })
     }
 
-    addNews() {
-        const news = {
-            title: `Новая новость ${new Date()}`,
-            content: 'контент'
-        }
-        this.props.addNews(news)
+    async saveNews(news) {
+        await this.props.addNews(news)
+        this.setState({addingNews: false})
     }
 
     async componentDidMount() {
@@ -41,7 +39,9 @@ class News extends Component {
         return (
             <div>
                 <h1>Новости</h1>
-                <Button onClick={this.addNews}>Добавить новость</Button>
+                <ButtonToolbar>
+                    <Button className='action-btn' variant="outline-primary" onClick={() => {this.setState({addingNews: true})}}>Добавить новость</Button>
+                </ButtonToolbar>
                 {this.getNewsItems(this.props.news)}
                 <NewsModalDialog
                     show={this.state.selectedNews}
@@ -54,7 +54,7 @@ class News extends Component {
                 <AddNewsModalDialog
                     show={this.state.addingNews}
                     handleClose={() => {this.setState({addingNews: false})}}
-                    save={this.props.addNews}
+                    save={this.saveNews}
                 />
             </div>
         )

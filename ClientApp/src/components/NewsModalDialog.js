@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {Modal} from "react-bootstrap";
 import Carousel from "react-bootstrap/es/Carousel";
+import ReactHtmlParser from 'react-html-parser';
 import './NewsModalDialog.css'
 
 export default class NewsModalDialog extends Component {
@@ -27,7 +28,9 @@ export default class NewsModalDialog extends Component {
     getItems(items) {
         return items.map(i => {
             return <Carousel.Item>
-                <div dangerouslySetInnerHTML={{__html: i.content}} />
+                <div className='news-body'>
+                    { ReactHtmlParser(i.content) }
+                </div>
             </Carousel.Item>
         })
     }

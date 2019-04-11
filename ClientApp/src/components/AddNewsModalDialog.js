@@ -42,7 +42,9 @@ export default class AddNewsModalDialog extends Component {
                 </Modal.Header>
                 <Modal.Body>
                     <div>
+                        <span>Заголовок</span>
                         <FormControl onChange={this.onTitleChange}/>
+                        <span>Контент</span>
                         <CKEditor
                             editor={ ClassicEditor }
                             data="<p>Hello from CKEditor 5!</p>"
@@ -58,7 +60,7 @@ export default class AddNewsModalDialog extends Component {
                                 console.log( 'Focus.', editor );
                             } }
                         />
-                        <Button onClick={this.onSave}>Сохранить</Button>
+                        <Button className='action-btn' onClick={this.onSave}>Сохранить</Button>
                     </div>
                 </Modal.Body>
             </Modal>
